@@ -56,7 +56,7 @@ var
   linha: string;
   saida: TStrings;
 begin
-  saida := TStringList.Create;
+
 
   AssignFile(arquivoCSV, arquivo);
   Reset(arquivoCSV);
@@ -65,6 +65,7 @@ begin
   begin
     DataSet.Insert;
 
+    saida := TStringList.Create;
     ExtractStrings([';'], [], PChar(linha), saida);
 
     cont := 0;
@@ -76,10 +77,11 @@ begin
 
     Readln(ArquivoCSV, Linha);
     DataSet.post;
+     FreeAndNil(saida);
   end;
 
   CloseFile(arquivoCSV);
-  FreeAndNil(saida);
+
 
 end;
 
